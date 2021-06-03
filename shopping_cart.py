@@ -25,4 +25,34 @@ products = [
 def to_usd(my_price):
     return f"${my_price:,.2f}"
 
-print(products)
+#print(len(products))
+
+#1) capture product ID and put it in a list
+
+selected_ids_list = []
+
+while True:
+
+    selected_id = input("Please select a product ID or say DONE ")
+
+    if selected_id.upper() == "DONE":
+        print("Here is your receipt")
+        break
+    else:
+        selected_ids_list.append(selected_id)
+    print(selected_id)
+
+#print(selected_ids_list)
+
+for sel_id in selected_ids_list:
+    #print (sel_id)
+
+    matching_products = [p for p in products if str(p["id"]) == str(sel_id)]
+    matching_product = matching_products[0]
+    print(matching_product["name"], matching_product["price"])
+
+#2)look up product prices for each product on the list
+#3) calculate totals 
+#4) print a receipt 
+#5) ask for an email
+#6) close the transaction
