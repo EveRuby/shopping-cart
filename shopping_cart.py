@@ -1,3 +1,7 @@
+import datetime
+import sys
+
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -25,31 +29,68 @@ products = [
 def to_usd(my_price):
     return f"${my_price:,.2f}"
 
-#print(len(products))
+def two_dec(my_price):
+    return f"{my_price:,.2f}"
 
 #1) capture product ID and put it in a list
 
 selected_ids_list = []
+id_range = range(1, 20)
+id_list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+
+#x=1
+#if x not in id_range:
+#    print("NOOOOt in range")
+#else:
+#    print("In range")
 
 while True:
 
-    selected_id = input("Please select a product ID or say DONE ")
-
+    selected_id = input("Please select a product ID from 1 to 20 or type DONE ")
+    #if selected_id != 
+    #if selected_id not in id_range:
+     #   print ("INVALID PRODUCT ID. PLEASE TRY AGAIN")
     if selected_id.upper() == "DONE":
-        print("Here is your receipt")
+        print("HERE IS YOUR RECEIPT:")
         break
+    elif int(selected_id) not in id_list:
+        print(selected_id, "IS AN INVALID PRODUCT ID. PLEASE TRY AGAIN")
+        sys.exit()
     else:
         selected_ids_list.append(selected_id)
     print(selected_id)
 
 #print(selected_ids_list)
+#print the receipt:
 
+print("---------------------------------------")
+print("EVE'S APPLE GROCERY STORE")
+print("EMAIL: EVESAPPLESTORE")
+
+print("---------------------------------------")
+print("CHECKOUT AT:", datetime.datetime.now())
+
+print("---------------------------------------")
+print("SELECTED PRODUCTS:")
+
+subtotal = 0
 for sel_id in selected_ids_list:
-    #print (sel_id)
-
     matching_products = [p for p in products if str(p["id"]) == str(sel_id)]
     matching_product = matching_products[0]
-    print(matching_product["name"], matching_product["price"])
+    subtotal = subtotal + matching_product["price"]
+    print("---", matching_product["name"], to_usd(matching_product["price"]))
+    
+print("---------------------------------------")
+tax = subtotal*0.0875
+total = subtotal+tax
+print("SUBTOTAL:", to_usd(subtotal))
+print("TAX:", to_usd(tax))
+print("TOTAL:", to_usd(total))
+    
+print("---------------------------------------")
+print("THANK YOU! SEE YOU SOON!")
+print("---------------------------------------")
+
 
 #2)look up product prices for each product on the list
 #3) calculate totals 
