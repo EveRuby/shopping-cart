@@ -33,17 +33,16 @@ def two_dec(my_price):
     return f"{my_price:,.2f}"
 
 #1) capture product ID and put it in a list
+#id_list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
+#creating a list of all the product ids in order to use it to check validity of the user input
+id_list_real = []
+for x in products:
+    id_list_real.append(x["id"])
+#print (id_list_real)
+
+#creating an infinite loop for user input and validity check
 selected_ids_list = []
-id_range = range(1, 20)
-id_list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-
-#x=1
-#if x not in id_range:
-#    print("NOOOOt in range")
-#else:
-#    print("In range")
-
 while True:
 
     selected_id = input("Please select a product ID from 1 to 20 or type DONE ")
@@ -53,7 +52,7 @@ while True:
     if selected_id.upper() == "DONE":
         print("HERE IS YOUR RECEIPT:")
         break
-    elif int(selected_id) not in id_list:
+    elif int(selected_id) not in id_list_real:
         print(selected_id, "IS AN INVALID PRODUCT ID. PLEASE TRY AGAIN")
         sys.exit()
     else:
